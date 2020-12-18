@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = 'text/css' href = "{{url_for ('static', filename='stylesheet.css')}}" media= "screen">
+    <title>{{page_title}}</title>
+</head>
+<body>
+
+<div>
+    <img src="/static/Muvin%20Logo.png" alt="Muvin Logo" style = "width: 140px; height: 34px;" class = 'logo'>
+</div>
+
+<div class="search">
+    <form action = '' method = 'POST'>
+        <input type="text" name = 'search' id = 'searchfor' placeholder='Find details for... "Seattle, WA"'/>
+        <input name = 'hotspot' value = 'Seattle, WA' type = 'submit'/>
+        <input name = 'hotspot' value = 'Paris, France' type = 'submit'/>
+        <input name = 'hotspot' value = 'Tokyo, Japan' type = 'submit'/>
+        <input name = 'hotspot' value = 'Rome, Italy' type = 'submit'/>
+        <input name = 'hotspot' value = 'Madrid, Spain' type = 'submit'/>
+        <input name = 'hotspot' value = 'London, UK' type = 'submit'/>
+    </form>
+</div>
+
+<div class ="results">
+    <iframe width='600' height='450' frameborder='0' style="border:0" src='{{iframe}}'></iframe>
+    <div class = 'info'>
+        <p>{{weatherinfo}}</p></br>
+        {{weather_info}}</br>
+        </br>
+        <p>{{currency}}</p></br>
+        {{detail}}
+        {{currencyinfo}}
+    </div>
+</div>
+
+
+</body>
+</html
