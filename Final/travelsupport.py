@@ -75,6 +75,7 @@ def main_handler():
                                    iframe = gmapsREST(search),
                                    weatherinfo = 'Current Weather',
                                    weather_info = weatherhandler(coords),
+                                   temperature = temperaturefind(coords),
                                    currency = 'Currency Evaluation',
                                    detail = '1USD is equivalent to...',
                                    currencyinfo = currencyhandler(data))
@@ -87,6 +88,7 @@ def main_handler():
                                    iframe=gmapsREST(search),
                                    weatherinfo = 'Current Weather',
                                    weather_info=weatherhandler(coords),
+                                   temperature = temperaturefind(coords),
                                    currency = 'Currency Evaluation',
                                    detail = '1USD is equivalent to...',
                                    currencyinfo = currencyhandler(data))
@@ -95,12 +97,16 @@ def main_handler():
                                    page_title = 'Enter or choose a location')
     else: return render_template('travelsupport.html', page_title = 'Find details for a city')
 
-#extract only important weather information
 def weatherhandler(coords):
     dic = oweatherREST(coords['lat'], coords['lng'])
-    important = {'temp': dic["current"]["temp"], 'weather': dic["current"]["weather"][0]["main"],
-                          'description': dic["current"]["weather"][0]["description"]}
-    return important['temp'], important['weather'], important['description']
+    iconcode = dic['current']['weather'][0]['icon']
+    url = 'http://openweathermap.org/img/wn/' + iconcode + '@2x.png'
+    return url
+
+def temperaturefind(coords):
+    dic = oweatherREST(coords['lat'], coords['lng'])
+    temp = dic['current']['weather'][0]['main']
+    return temp
 
 def currencyhandler(data):
     country = ''
